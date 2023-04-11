@@ -11,7 +11,8 @@ button.addEventListener("click", async () => {
   const weather_url = `https://api.openweathermap.org/data/2.5/weather?q=${where}&appid=${key}`;
   let response = await fetch(weather_url);
   let data = await response.json();
-  document.querySelector(".temperature").innerHTML = `${data.name}`;
+  let temperature_273 = (data.main.temp -273.15).toFixed(2);
+  document.querySelector(".temperature").innerHTML = `${temperature_273}`;
   document.querySelector(".description").innerHTML = `${data.weather[0].description}`;
   document.querySelector(".humidity span").innerHTML = `${data.main.humidity}`;
   document.querySelector(".wind span").innerHTML = `${data.wind.speed}`;
